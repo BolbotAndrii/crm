@@ -1,0 +1,6 @@
+export const HOME_ROUTE             = '/'
+export const LEADS_ROUTE            = '/leads'
+export const GROUPS_ROUTE           = '/groups'
+export const USERS_ROUTE            = '/users'
+export const ANALYTICS_ROUTE        = '/analytics'
+export const LOGIN_ROUTE            = '/login'

@@ -1,0 +1,6 @@
+{
+  "port": 5000,
+  "mongoUri": "mongodb+srv://caparra:hWxwMGKObklbJ8PV@caparracluster.c8vfm6i.mongodb.net/caparra?retryWrites=true&w=majority",
+  "dbUser": "caparra",
+  "dbPassword": "hWxwMGKObklbJ8PV"
+}
