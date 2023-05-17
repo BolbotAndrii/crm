@@ -23,11 +23,11 @@ export const updateUsers = (id: number) => {
 export const createGroup = (data: []) => {
     return axios.post(`/api/groups/create`, data)
 }
-export const getGroupById = (id: number) => {
+export const getGroupById = (id: string) => {
     return axios.get(`/api/groups/${id}`)
 }
 
-export const getGroups = (props?: object) => {
+export const getGroups = ( ) => {
     return axios.get(`/api/groups/`)
 }
 

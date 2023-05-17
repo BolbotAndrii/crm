@@ -1,11 +1,11 @@
 import React from 'react';
 import MainLayout from "../../layouts/MainLayout/MainLayout";
-import GroupDetail from "../../components/Groups/GroupDetail/GroupDetail";
+import {GroupDetailForm} from "../../features/groups/forms/GroupDetailForm";
 
 const GroupPageDetail = () => {
     return (
         <MainLayout>
-            <GroupDetail />
+            <GroupDetailForm />
         </MainLayout>
     );
 };

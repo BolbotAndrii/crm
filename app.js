@@ -15,6 +15,7 @@ app.use(bodyParser.json())
 
 
 app.use('/api/groups', require('./routes/groups.routes'))
+app.use('/api/user', require('./routes/users.routes'))
 
 
 

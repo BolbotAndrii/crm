@@ -3,8 +3,8 @@ const customError = require('../../common/errors')
 
 const CreateNewGroup = async (req, res) => {
     try {
-        const { title_en, code, users_uid, pages_uid, components_uid } = req.body
-        const group = await new Group( { title_en, code, users_uid, pages_uid, components_uid  } )
+        const { title_en, code, priority, users_uid, pages_uid, components_uid } = req.body
+        const group = await new Group( { title_en, code, priority, users_uid, pages_uid, components_uid  } )
         const createdGroup = await group.save()
 
         if (createdGroup) {
@@ -21,7 +21,7 @@ const CreateNewGroup = async (req, res) => {
 
 const GetGroups = async (req, res) => {
     try {
-        const groups = await Group.find()
+        const groups = await Group.find().sort( { "priority": 1 } )
         return res.status( 200 ).json( groups )
     } catch ( err ) {
         return res.status(500).json({

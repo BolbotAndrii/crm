@@ -1,11 +1,13 @@
 import React from 'react';
 import MainLayout from "../../layouts/MainLayout/MainLayout";
-import Groups from "../../components/Groups/Groups";
+import GroupsTable from "../../features/groups/tables/GroupsTable";
+import {TopPanel} from "../../features/groups/components/TopPanel";
 
 const HomePage = () => {
     return (
         <MainLayout>
-            <Groups />
+            <TopPanel />
+            <GroupsTable />
         </MainLayout>
     );
 };
