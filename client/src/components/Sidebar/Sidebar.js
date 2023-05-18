@@ -1,9 +1,19 @@
 import React from 'react';
 import s from './Sidebar.module.css'
-import { NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import Logo from "../Logo/Logo";
-import {DashboardOutlined,TeamOutlined, UserOutlined, UsergroupAddOutlined, ProjectOutlined} from "@ant-design/icons";
-import { useSelector} from "react-redux";
+import {
+    DashboardOutlined,
+    TeamOutlined,
+    UserOutlined,
+    UsergroupAddOutlined,
+    ProjectOutlined,
+    BranchesOutlined,
+    DollarOutlined,
+    CalendarOutlined,
+    SettingOutlined
+} from "@ant-design/icons";
+import {useSelector} from "react-redux";
 
 const Sidebar = () => {
 
@@ -11,36 +21,60 @@ const Sidebar = () => {
     const isOpen = useSelector((state) => state.MenuToggle.isOpen);
 
     return (
-        <div className={ isOpen ? s.container + ' ' + s.close : s.container }>
-            <Logo />
-            <nav className={ s.list }>
+        <div className={isOpen ? s.container + ' ' + s.close : s.container}>
+            <Logo/>
+            <nav className={s.list}>
                 <li key='1'>
                     <NavLink to='/' className={(navData) => (navData.isActive ? s.active : 'none')}>
-                        <DashboardOutlined />
+                        <DashboardOutlined/>
                         <p>Dashboard</p>
                     </NavLink>
                 </li>
                 <li key='2'>
                     <NavLink to='/leads' className={(navData) => (navData.isActive ? s.active : 'none')}>
-                        <UsergroupAddOutlined />
+                        <UsergroupAddOutlined/>
                         <p>Leads</p>
                     </NavLink>
                 </li>
                 <li key='3'>
-                    <NavLink to='/groups' className={(navData) => (navData.isActive ? s.active : 'none')}>
-                        <TeamOutlined />
-                        <p>Groups</p>
+                    <NavLink to='/affiliates' className={(navData) => (navData.isActive ? s.active : 'none')}>
+                        <BranchesOutlined/>
+                        <p>Affiliates</p>
                     </NavLink>
                 </li>
                 <li key='4'>
-                    <NavLink to='/users' className={(navData) => (navData.isActive ? s.active : 'none')}>
-                        <UserOutlined />
-                        <p>Users</p>
+                    <NavLink to='/deposits' className={(navData) => (navData.isActive ? s.active : 'none')}>
+                        <DollarOutlined/>
+                        <p>Deposits</p>
                     </NavLink>
                 </li>
                 <li key='5'>
+                    <NavLink to='/calendar' className={(navData) => (navData.isActive ? s.active : 'none')}>
+                        <CalendarOutlined/>
+                        <p>Calendar</p>
+                    </NavLink>
+                </li>
+                <li key='6'>
+                    <NavLink to='/settings' className={(navData) => (navData.isActive ? s.active : 'none')}>
+                        <SettingOutlined/>
+                        <p>Settings</p>
+                    </NavLink>
+                </li>
+                <li key='7'>
+                    <NavLink to='/groups' className={(navData) => (navData.isActive ? s.active : 'none')}>
+                        <TeamOutlined/>
+                        <p>Groups</p>
+                    </NavLink>
+                </li>
+                <li key='8'>
+                    <NavLink to='/users' className={(navData) => (navData.isActive ? s.active : 'none')}>
+                        <UserOutlined/>
+                        <p>Users</p>
+                    </NavLink>
+                </li>
+                <li key='9'>
                     <NavLink to='/analytics' className={(navData) => (navData.isActive ? s.active : 'none')}>
-                        <ProjectOutlined />
+                        <ProjectOutlined/>
                         <p>Analytics</p>
                     </NavLink>
                 </li>

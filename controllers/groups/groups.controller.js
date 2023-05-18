@@ -22,7 +22,20 @@ const CreateNewGroup = async (req, res) => {
 const GetGroups = async (req, res) => {
     try {
         const groups = await Group.find().sort( { "priority": 1 } )
-        return res.status( 200 ).json( groups )
+        const preparedData = groups.reduce( (acc, item) => {
+            acc.push({
+                id: item._id,
+                code: item.code,
+                title: item.title_en,
+                priority: item.priority,
+                updated_at: item?.createdAt,
+                created_at: item?.updatedAt
+            })
+
+            return acc
+        }, [] )
+
+        return res.status( 200 ).json( preparedData )
     } catch ( err ) {
         return res.status(500).json({
             message: customError.server.error
@@ -36,7 +49,18 @@ const GetGroupById = async (req, res) => {
         const group = await Group.findOne(  { _id: req.params.id  }   )
 
         if (group) {
-            return res.status( 200 ).json( group )
+            const preparedData = [group].reduce( (acc, item) => {
+                    acc.id = item._id,
+                    acc.code = item.code,
+                    acc.title = item.title_en,
+                    acc.priority = item.priority,
+                    acc.updated_at = item?.createdAt,
+                    acc.created_at = item?.updatedAt
+
+
+                return acc
+            }, {} )
+            return res.status( 200 ).json( preparedData )
 
         } else {
             return res.status( 400 ).json( customError.group.common.search.failed )

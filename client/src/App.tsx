@@ -2,11 +2,11 @@ import React, {Suspense} from 'react'
 import Router from "./components/Router/Router";
 import store from "./store/store";
 import {Provider} from "react-redux";
-
+import {  Spin } from 'antd';
 
 function App() {
   return (
-      <Suspense fallback={<h1>Loading</h1>}>
+      <Suspense fallback={<Spin /> } >
         <Provider store={store} >
           <Router/>
         </Provider>

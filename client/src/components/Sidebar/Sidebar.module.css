@@ -19,6 +19,7 @@
 
 .list {
     padding: 1rem;
+    overflow-y: auto;
 }
 
 .list li a {

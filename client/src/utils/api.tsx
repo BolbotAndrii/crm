@@ -27,11 +27,11 @@ export const getGroupById = (id: string) => {
     return axios.get(`/api/groups/${id}`)
 }
 
-export const getGroups = ( ) => {
-    return axios.get(`/api/groups/`)
+export const getGroups = ( props:any) => {
+    return axios.get(`/api/groups?${props}`)
 }
 
-export const deleteGroup = (id: number) => {
+export const deleteGroup = (id: string) => {
     return axios.delete(`/api/groups/${id}`)
 }
 

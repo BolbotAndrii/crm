@@ -13,6 +13,7 @@ export const GroupsInfoModal:FC<IProps> = ( { visible, handlerClose, id } ) => {
 
     const [info, setInfo] = useState<any>({})
     const [loading, setLoading] = useState(false)
+console.log(id)
 
     useEffect(() => {
         setLoading(true)
@@ -34,10 +35,10 @@ export const GroupsInfoModal:FC<IProps> = ( { visible, handlerClose, id } ) => {
             <Modal open={ visible }  footer={null} onCancel={handlerClose} >
                <Spin spinning={loading}>
                    <Descriptions title="Group Info" layout="vertical">
-                       <Descriptions.Item label="GroupName">       {info?.title_en}  </Descriptions.Item>
+                       <Descriptions.Item label="GroupName">       {info?.title}  </Descriptions.Item>
                        <Descriptions.Item label="GroupCode">       {info?.code}  </Descriptions.Item>
-                       <Descriptions.Item label="GroupCratedAt">   {features.normalizeDateTime(info?.createdAt)}  </Descriptions.Item>
-                       <Descriptions.Item label="GroupUpdatedAt">  {features.normalizeDateTime(info?.updatedAt)}  </Descriptions.Item>
+                       <Descriptions.Item label="GroupCratedAt">   {features.normalizeDateTime(info?.created_at)}  </Descriptions.Item>
+                       <Descriptions.Item label="GroupUpdatedAt">  {features.normalizeDateTime(info?.updated_at)}  </Descriptions.Item>
                    </Descriptions>
                </Spin>
                 <Button onClick={ handlerClose } type="primary" ghost >Ok</Button>
