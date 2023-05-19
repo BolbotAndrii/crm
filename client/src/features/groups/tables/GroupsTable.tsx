@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useMemo} from 'react';
 import {Table, message, Dropdown, Modal, Spin} from 'antd';
-import {deleteGroup, getGroups} from "../../../utils/api";
+import {deleteGroup, getGroups} from "../../../api/groups";
 import s from './GroupsTable.module.css'
 import { UnorderedListOutlined, UsergroupDeleteOutlined, FormOutlined, EyeOutlined} from "@ant-design/icons";
 import {Link} from "react-router-dom";
@@ -12,7 +12,7 @@ import { IGroups } from "../../../types/groupsTypes";
 const GroupsTable = () => {
     const [groups, setGroups] = useState<IGroups[]>([])
     const [visible, setVisible] = useState(false)
-    const [activeGroupId, setActiveGroupId] = useState({id: ''})
+    const [activeGroupId, setActiveGroupId] = useState({ id: '' })
     const [loading, setLoading] = useState(false)
 
 
@@ -21,8 +21,8 @@ const GroupsTable = () => {
         const fetchData = async () => {
             setLoading(true)
             try {
-                const response = await getGroups({});
-                setGroups(response.data);
+                const response = await getGroups({})
+                setGroups(response.data)
             } catch  {
                 message.error('An error occurred while loading data')
             } finally {
@@ -129,7 +129,7 @@ const GroupsTable = () => {
             title: 'View',
             dataIndex: '',
             key: 'x',
-            render: (text:string , record: any) => <p onClick={() => handleVisible(record.id)}>
+            render: (text:any) => <p onClick={() => handleVisible(text.id)}>
                 <EyeOutlined/>
             </p>
 
@@ -158,7 +158,7 @@ const GroupsTable = () => {
 
     const handleClose = () => {
         setVisible(false)
-        setActiveGroupId({id: ''})
+        setActiveGroupId({ id: '' })
     }
 
 
@@ -176,7 +176,6 @@ const GroupsTable = () => {
             </Spin>
             <GroupsInfoModal visible={visible} handlerClose={handleClose} id={activeGroupId?.id}  />
         </div>
-
     );
 };
 

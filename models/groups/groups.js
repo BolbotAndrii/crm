@@ -1,7 +1,7 @@
-const { model, Types, Schema } = require('mongoose')
+const { model, Schema } = require('mongoose')
 
 const groups = new Schema({
-    uid:              { type: Types.ObjectId },
+    uid:              { type: String, required: true, unique: true },
     title_en:         { type: String, required: true, unique: true },
     code:             { type: String, required: true, unique: true },
     priority:         { type: Number, required: true, unique: true },
@@ -10,8 +10,8 @@ const groups = new Schema({
     components_uid:   { type: Array, default: [] }
 }, {
     timestamps: {
-        createdAt: "createdAt",
-        updatedAt: "updatedAt",
+        createdAt: "created_at",
+        updatedAt: "updated_at",
     }
 })
 

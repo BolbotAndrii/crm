@@ -43,6 +43,28 @@ const ErrorMessages = {
         }
 
 
+    },
+    "lead": {
+        "success": {
+            "update": "The lead was successfully updated",
+            "delete" : "The lead was successfully deleted",
+            "get": "The lead data received successfully",
+            "add": "The lead has been successfully added",
+        },
+        "failed": {
+            "update": "The lead update was failed",
+            "delete" : "The lead  removal was failed",
+            "get": "An error while receiving data",
+            "add": "An error when adding data",
+        },
+        "common": {
+            "search": {
+                "success": "Item is found",
+                "failed": "Item not found"
+            }
+        }
+
+
     }
 }
 

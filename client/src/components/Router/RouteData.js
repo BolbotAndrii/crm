@@ -5,7 +5,11 @@ import {
     GROUPS_ROUTE,
     USERS_ROUTE,
     ANALYTICS_ROUTE,
-    LOGIN_ROUTE
+    LOGIN_ROUTE,
+    DEPOSITS_ROUTE,
+    AFFILIATES_ROUTE,
+    CALENDAR_ROUTE,
+    SETTINGS_ROUTE
 } from '../../constants/routes'
 
 const routes = [
@@ -43,6 +47,30 @@ const routes = [
         label: 'Analytics',
         path: ANALYTICS_ROUTE,
         element: lazy( () => import('../../pages/Analytics/AnalyticsPage')),
+        exact: true
+    },
+    {
+        label: 'Deposits',
+        path: DEPOSITS_ROUTE,
+        element: lazy( () => import('../../pages/Deposits/DepositsPage')),
+        exact: true
+    },
+    {
+        label: 'Affiliates',
+        path: AFFILIATES_ROUTE,
+        element: lazy( () => import('../../pages/Affiliates/AffiliatesPage')),
+        exact: true
+    },
+    {
+        label: 'Calendar',
+        path: CALENDAR_ROUTE,
+        element: lazy( () => import('../../pages/Calendar/CalendarPage')),
+        exact: true
+    },
+    {
+        label: 'Settings',
+        path: SETTINGS_ROUTE,
+        element: lazy( () => import('../../pages/Settings/SettingsPage')),
         exact: true
     },
     {

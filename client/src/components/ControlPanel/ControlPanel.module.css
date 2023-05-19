@@ -20,6 +20,11 @@
     border: 1px solid #01b41f;
     color: #ffffff;
     outline: none;
+    margin-right: 1rem;
+}
+
+.container button.add span:nth-child(2) {
+    margin-left: .6rem;
 }
 
 .container button.add:hover {
@@ -37,10 +42,84 @@
     border: 1px solid #b40101;
     color: #ffffff;
     outline: none;
+    margin-right: 1rem;
+}
+
+.container button.remove span:nth-child(2) {
+    margin-left: .6rem;
 }
 
 .container button.remove:hover {
     background-color: #b40101;
     color: #ffffff;
     border: 1px solid #b40101;
+}
+
+
+.container button.filter {
+    font-size: .8rem;
+    line-height: .8rem;
+    padding: 5px 1rem;
+    height: auto;
+    background-color: transparent;
+    border: 1px solid #01b47e;
+    color: #ffffff;
+    outline: none;
+    margin-right: 1rem;
+}
+
+.container button.filter span:nth-child(2) {
+    margin-left: .6rem;
+}
+
+.container button.filter:hover {
+    background-color: #01b47e;
+    color: #ffffff;
+    border: 1px solid #01b47e;
+}
+
+.container button.upload {
+    font-size: .8rem;
+    line-height: .8rem;
+    padding: 5px 1rem;
+    height: auto;
+    background-color: transparent;
+    border: 1px solid #0264e1;
+    color: #ffffff;
+    outline: none;
+    margin-right: 1rem;
+}
+
+.container button.upload span:nth-child(2) {
+    margin-left: .6rem;
+}
+
+
+.container button.upload:hover {
+    background-color: #0264e1;
+    color: #ffffff;
+    border: 1px solid #0264e1;
+}
+
+.container button.filters {
+    font-size: .8rem;
+    line-height: .8rem;
+    padding: 5px 1rem;
+    height: auto;
+    background-color: transparent;
+    border: 1px solid #e19a02;
+    color: #ffffff;
+    outline: none;
+    margin-right: 1rem;
+}
+
+.container button.filters span:nth-child(2) {
+    margin-left: .6rem;
+}
+
+
+.container button.filters:hover {
+    background-color: #e19a02;
+    color: #ffffff;
+    border: 1px solid #e19a02;
 }
