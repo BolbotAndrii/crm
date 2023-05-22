@@ -1,18 +1,18 @@
-import React, {useEffect, useState, useMemo} from 'react';
-import {Table, message, Dropdown, Modal, Spin} from 'antd';
-import {deleteGroup, getGroups} from "../../../api/groups";
+import React, {useEffect, useState, useMemo} from 'react'
+import {Table, message, Dropdown, Modal, Spin} from 'antd'
+import {deleteGroup, getGroups} from "../../../api/groups"
 import s from './GroupsTable.module.css'
-import { UnorderedListOutlined, UsergroupDeleteOutlined, FormOutlined, EyeOutlined} from "@ant-design/icons";
-import {Link} from "react-router-dom";
-import features from "../../../utils/features";
-import {GroupsInfoModal} from "../modals/GroupsInfoModal";
-import { IGroups } from "../../../types/groupsTypes";
+import { UnorderedListOutlined, UsergroupDeleteOutlined, FormOutlined, EyeOutlined} from "@ant-design/icons"
+import {Link} from "react-router-dom"
+import features from "../../../utils/features"
+import {GroupsInfoModal} from "../modals/GroupsInfoModal"
+import { IGroups } from "../../../types/groupsTypes"
 
 
 const GroupsTable = () => {
     const [groups, setGroups] = useState<IGroups[]>([])
     const [visible, setVisible] = useState(false)
-    const [activeGroupId, setActiveGroupId] = useState({ id: '' })
+    const [activeGroupId, setActiveGroupId] = useState('')
     const [loading, setLoading] = useState(false)
 
 
@@ -22,15 +22,15 @@ const GroupsTable = () => {
             setLoading(true)
             try {
                 const response = await getGroups({})
-                setGroups(response.data)
+                setGroups(response.data.group)
             } catch  {
                 message.error('An error occurred while loading data')
             } finally {
                 setLoading(false)
             }
-        };
+        }
 
-        fetchData();
+        fetchData()
 
     }, [])
 
@@ -58,10 +58,10 @@ const GroupsTable = () => {
                 removeElement(id)
             },
             onCancel() {
-                console.log('Cancel');
+                console.log('Cancel')
             },
-        });
-    };
+        })
+    }
 
 
     const columns = useMemo( () => [
@@ -144,23 +144,23 @@ const GroupsTable = () => {
 
     const rowStyle = (record:any, index:number) => {
         if (index % 2 === 0) {
-            return s.light;
+            return s.light
         } else {
-            return s.dark;
+            return s.dark
         }
-    };
+    }
 
-    const handleVisible = (record:any) => {
+    const handleVisible = (id:string) => {
         setVisible(true)
-        setActiveGroupId(record)
+        setActiveGroupId(id)
 
     }
 
     const handleClose = () => {
         setVisible(false)
-        setActiveGroupId({ id: '' })
+        setActiveGroupId( '')
     }
-
+    console.log(activeGroupId)
 
     return (
         <div>
@@ -174,9 +174,9 @@ const GroupsTable = () => {
                     className       = { s.headerHeight }
                 />
             </Spin>
-            <GroupsInfoModal visible={visible} handlerClose={handleClose} id={activeGroupId?.id}  />
+            <GroupsInfoModal visible={visible} handlerClose={handleClose} id={activeGroupId}  />
         </div>
-    );
-};
+    )
+}
 
-export default GroupsTable;
+export default GroupsTable

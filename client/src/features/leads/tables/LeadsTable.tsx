@@ -2,8 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {message, Spin, Table, Popover, Tag, Dropdown} from "antd";
 import s from "./style.module.css";
 import {getLeads} from "../../../api/leads";
-import {EyeOutlined, FormOutlined, UnorderedListOutlined, UsergroupDeleteOutlined} from "@ant-design/icons";
+import {EyeOutlined, FormOutlined, UnorderedListOutlined, UsergroupDeleteOutlined, CheckOutlined} from "@ant-design/icons";
 import {Link} from "react-router-dom";
+import features from "../../../utils/features";
 
 
 // interface DataType {
@@ -15,7 +16,7 @@ import {Link} from "react-router-dom";
 // }
 
 export const LeadsTable = () => {
-    const [leads, setLeads] = useState()
+    const [leads, setLeads] = useState([])
     const [loading, setLoading] = useState(false)
 
     useEffect( () => {
@@ -23,8 +24,7 @@ export const LeadsTable = () => {
         const fetchLeads = async () => {
            try {
                const response = await getLeads()
-               setLeads(response.data)
-               console.log(response.data)
+               setLeads(response.data.leadData)
            } catch {
                message.error('An error occurred while loading data')
            } finally {
@@ -33,6 +33,8 @@ export const LeadsTable = () => {
         }
         fetchLeads()
     }, [])
+
+    console.log(leads)
 
     const columns = [
         {
@@ -62,6 +64,15 @@ export const LeadsTable = () => {
                                             Delete
                                         </p>
                                     ),
+                                },
+                                {
+                                    key: '3',
+                                    icon: <CheckOutlined />,
+                                    label: (
+                                        <p >
+                                            Change status
+                                        </p>
+                                    ),
                                 }]
                         }}
                         trigger={["click"]}
@@ -76,6 +87,12 @@ export const LeadsTable = () => {
             dataIndex: 'uid',
             key: 'uid',
 
+        },
+        {
+            title: 'Crated at',
+            dataIndex: 'created_at',
+            key: 'created_at',
+            render: (text: number) => features.normalizeDateTime(text)
         },
         {
             title: 'First name',
@@ -158,6 +175,7 @@ export const LeadsTable = () => {
                     rowKey          = { groups => groups.id }
                     rowClassName    = { rowStyle }
                     className       = { s.headerHeight }
+                    pagination={{ pageSize: 5 }}
                     scroll={{ x: 1600, y: 'calc(100vh - 300px)' }}
                 />
             </Spin>

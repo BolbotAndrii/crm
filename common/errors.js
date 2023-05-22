@@ -2,6 +2,9 @@ const ErrorMessages = {
     "server": {
         "error": "Server error!"
     },
+    "ip": {
+        "error": "Your ip is not whitelisted"
+    },
     "group": {
         "success": {
             "update": "The group was successfully updated",
@@ -17,8 +20,8 @@ const ErrorMessages = {
         },
         "common": {
             "search": {
-                "success": "Item is found",
-                "failed": "Item not found"
+                "success": "Item(s) is found",
+                "failed": "Item(s) not found"
             }
         }
     },
@@ -37,8 +40,8 @@ const ErrorMessages = {
         },
         "common": {
             "search": {
-                "success": "Item is found",
-                "failed": "Item not found"
+                "success": "Item(s) is found",
+                "failed": "Item(s) not found"
             }
         }
 
@@ -59,8 +62,8 @@ const ErrorMessages = {
         },
         "common": {
             "search": {
-                "success": "Item is found",
-                "failed": "Item not found"
+                "success": "Item(s) is found",
+                "failed": "Item(s) not found"
             }
         }
 

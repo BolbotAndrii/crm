@@ -42,3 +42,7 @@
 .headerHeight .ant-pagination-item-link{
     color: #ffffff !important;
 }
+
+:where(.css-dev-only-do-not-override-15rg2km).ant-pagination .ant-pagination-item a {
+    color: #ffffff !important;
+}

@@ -13,21 +13,21 @@ export const GroupsInfoModal:FC<IProps> = ( { visible, handlerClose, id } ) => {
 
     const [info, setInfo] = useState<any>({})
     const [loading, setLoading] = useState(false)
-console.log(id)
+
 
     useEffect(() => {
         setLoading(true)
         const fetchGroup = async () => {
             try {
                 const response = await getGroupById(id)
-                setInfo(response.data)
+                setInfo(response.data.group)
             } catch (e) {
                 message.error('Cant Loading' + e)
             } finally {
                  setLoading(false)
             }
         }
-        if(id) fetchGroup()
+        if(id) fetchGroup().then()
     }, [id])
 
     return (

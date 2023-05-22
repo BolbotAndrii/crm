@@ -10,8 +10,8 @@ const groups = new Schema({
     components_uid:   { type: Array, default: [] }
 }, {
     timestamps: {
-        createdAt: "created_at",
-        updatedAt: "updated_at",
+        createdAt: "createdAt",
+        updatedAt: "updatedAt",
     }
 })
 

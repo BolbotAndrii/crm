@@ -7,7 +7,7 @@ import control from "../../components/ControlPanel/ControlPanel.module.css";
 import {FilterOutlined, UploadOutlined, SaveOutlined} from "@ant-design/icons";
 
 
-const HomePage = () => {
+const LeadsPage = () => {
     return (
         <MainLayout>
             <ControlPanel>
@@ -22,4 +22,4 @@ const HomePage = () => {
     );
 };
 
-export default HomePage;
+export default LeadsPage;

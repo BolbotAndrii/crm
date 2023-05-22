@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {FC, ReactNode} from 'react';
 import s from './ControlPanel.module.css'
 
-const ControlPanel = ({children}) => {
+interface IControl{
+    children: ReactNode
+}
+const ControlPanel:FC<IControl> = ({children}) => {
     return (
         <div className={s.container}>
             {children}

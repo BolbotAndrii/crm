@@ -1,110 +1,51 @@
-const Lead = require('../../models/leads/leads')
 const customError = require('../../common/errors')
+const leadService = require('../../services/leadsService')
 
 const CreateNewLead = async (req, res) => {
     try {
+        const result = await leadService.CreateNewLeadService(req.connection.remoteAddress, req.body)
 
-        const {
-            first_name,
-            last_name,
-            phone,
-            email,
-            affiliate,
-            source,
-            manager,
-            status,
-            balance,
-            comment
-        } = req.body
-
-        const getTimestampInSeconds = () => {
-            return Math.floor(Date.now() / 1000)
+        if(result.status === 'denied' ) {
+            return res.status(403).json(result)
         }
-
-
-        if(req.connection.remoteAddress === '::1') {
-            const createdLead = await new Lead({
-                uid: getTimestampInSeconds() ,
-                first_name,
-                last_name,
-                phone,
-                email,
-                affiliate,
-                source,
-                manager,
-                status,
-                balance,
-                comment
-            })
-
-
-            const createdLeadSave = await createdLead.save()
-
-            if (createdLeadSave) {
-                return res.status(201).json({
-                    message: customError.lead.success.add
-                })
-            }
+        if(result.status !== true) {
+            return res.status(400).json(result)
         } else {
-            return res.status(401).json({
-                message: "Your ip is not whitelisted"
-            })
+            return res.status(200).json(result)
         }
-
     } catch (err) {
-        return res.status(500).json({
-            message: customError.server.error
-        })
+        return res.status(500).json({message: customError.server.error, error: err})
     }
 }
 
 const GetLeads = async (req, res) => {
     try {
-        const leads = await Lead.find().sort({ "priority": 1 } )
-        const preparedData = leads.reduce((acc, item) => {
-            acc.push({
-                id: item._id,
-                uid: item.uid,
-                first_name: item.first_name,
-                last_name: item.last_name,
-                phone: item.phone,
-                email: item.email,
-                affiliate: item.affiliate,
-                source: item.source,
-                manager: item.manager,
-                balance: item.balance,
-                status: item.status,
-                comment: item.comment,
-                updated_at: item?.createdAt,
-                created_at: item?.updatedAt
-            })
+        const result = await leadService.GetLeadsService()
+        if(!result) {
+            return res.status(400).json(result)
+        }
 
-            return acc
-        }, [])
+        if(result.status !== true) {
+            return res.status(400).json(result)
+        } else {
+            return res.status(200).json(result)
+        }
 
-        return res.status(200).json(preparedData)
     } catch (err) {
-        return res.status(500).json({
-            message: customError.server.error
-        })
+        return res.status(500).json({message: customError.server.error, error: err})
     }
 }
 
 const GetLeadById = async (req, res) => {
     try {
-
-        const lead = await Lead.findOne({_id: req.params.id})
-
-
-            return res.status(200).json(lead)
-
-
-
+        const result = await leadService.GetLeadByIdService(req.params.id)
+        if(result.status !== true) {
+            return res.status(400).json(result)
+        } else {
+            return res.status(200).json(result)
+        }
     } catch (err) {
-
-        return res.status(500).json({
-            message: customError.server.error
-        })
+        return res.status(500).json({message: customError.server.error, error: err})
     }
 }
 
@@ -114,35 +55,33 @@ const UpdateLeadByID = async (req, res) => {
         const filter = {_id: req.params.id}
         const update = req.body
 
-        const resUpdate = await Lead.findByIdAndUpdate(filter, update, {
-            new: true
-        })
+        const result = await leadService.UpdateLeadByIdService(filter, update)
 
-        if (resUpdate) {
-            return res.status(200).json({message: customError.lead.success.update})
+        if (!result) {
+            return res.status(400).json(result)
         } else {
-            return res.status(400).json({message: customError.lead.failed.update})
+            return res.status(200).json(result)
         }
 
     } catch (err) {
         return res.status(500).json({message: customError.server.error, error: err})
     }
 }
+
 const DeleteLeadByID = async (req, res) => {
     try {
-        const resDelete = await Lead.findByIdAndDelete(req.params.id)
+        const result = await leadService.DeleteLeadByIdService(req.params.id)
 
-        if (resDelete) {
-            return res.status(200).json({message: customError.lead.success.delete})
+        if (result) {
+            return res.status(200).json(result)
         } else {
-            return res.status(400).json({message: customError.lead.failed.delete})
+            return res.status(400).json(result)
         }
 
     } catch (err) {
         return res.status(500).json({message: customError.server.error, error: err})
     }
 }
-
 
 module.exports = {
     CreateNewLead,

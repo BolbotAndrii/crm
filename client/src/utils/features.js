@@ -5,7 +5,7 @@ const normalizeDateTime = (datetime) => {
     const normalizedDateString = date.toLocaleDateString();
     const normalizedTimeString = date.toLocaleTimeString();
 
-    return `${normalizedDateString} ${normalizedTimeString}`;
+    return datetime !== null ? `${normalizedDateString} ${normalizedTimeString}` : ''
 }
 
 
